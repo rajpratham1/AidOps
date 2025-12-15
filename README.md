@@ -33,6 +33,8 @@ This project includes detailed guides for developers and students:
 *   [🔌 API & Connectivity Guide](docs/api_connection.md) - How Local vs. Cloud modes work.
 *   [🛠️ Technical Deep Dive](docs/technical.md) - Code structure and "Minimal 3.8" dependency strategy.
 *   [📚 Study Roadmap](docs/study.md) - What we learned (Snowpark, Security, LLMs).
+*   [💭 Requirement_Creation](docs/requirement_creation.md) - What we do (Fullfill & More).
+  
 
 ---
 
