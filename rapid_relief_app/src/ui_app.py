@@ -399,22 +399,27 @@ elif st.session_state.page == "Commander Chat":
                     st.session_state.messages.append({"role": "assistant", "content": response})
                     
                     # --- SERVER-SIDE VOICE (gTTS) ---
-                    # 1. Clean text
-                    clean_text = response.replace("**", "").replace("*", "").replace('"', '').replace("'", "").replace("\n", " ")
-                    
-                    # 2. Generate Audio File
-                    from gtts import gTTS
-                    import io
-                    
-                    # Create in-memory file
-                    tts = gTTS(text=clean_text, lang='en')
-                    mp3_fp = io.BytesIO()
-                    tts.write_to_fp(mp3_fp)
-                    mp3_fp.seek(0)
-                    
-                    # 3. Play Audio via Native Streamlit Player
-                    st.success("🔊 Audio Transmission Received")
-                    st.audio(mp3_fp, format='audio/mp3')
+                    try:
+                        # 1. Clean text
+                        clean_text = response.replace("**", "").replace("*", "").replace('"', '').replace("'", "").replace("\n", " ")
+                        
+                        # 2. Generate Audio File
+                        from gtts import gTTS
+                        import io
+                        
+                        # Create in-memory file
+                        tts = gTTS(text=clean_text, lang='en')
+                        mp3_fp = io.BytesIO()
+                        tts.write_to_fp(mp3_fp)
+                        mp3_fp.seek(0)
+                        
+                        # 3. Play Audio via Native Streamlit Player
+                        st.success("🔊 Audio Transmission Received")
+                        st.audio(mp3_fp, format='audio/mp3')
+                    except Exception as e_audio:
+                        # Audio is optional. If gTTS is missing or blocked by Snowflake Network Rules, just skip it.
+                        # This prevents the "Comms Failure" red box from appearing for a non-critical feature.
+                        pass
 
                 except Exception as e:
                     st.error(f"Comms Failure: {e}")
