@@ -1,0 +1,8 @@
+snowflake-snowpark-python
+streamlit
+pandas
+plotly
+tabulate
+requests
+gTTS
+toml

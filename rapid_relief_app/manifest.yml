@@ -1,0 +1,25 @@
+# 4. The Packaging (manifest.yml)
+# Objective: Define the Native App artifacts and permissions.
+# Architecture: Standard Snowflake Native App Manifest.
+
+manifest_version: 1
+
+artifacts:
+  setup_script: setup_script.sql
+  default_streamlit: core.ui_app
+  extension_code: true
+
+# The "Consumer" context requires references to access tables in their account.
+references:
+  - input_table:
+      label: "Inventory History Table"
+      description: "The table containing your historical inventory data."
+      privileges:
+        - SELECT
+      object_type: TABLE
+      register_callback: core.register_reference
+
+# Application configuration
+configuration:
+  log_level: INFO
+  trace_level: ALWAYS
