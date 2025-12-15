@@ -722,7 +722,7 @@ elif st.session_state.page == "Help & Support":
                 try:
                     # Posting to Formspree server-side to prevent redirect
                     response = requests.post(
-                        "https://formspree.io/f/xvgrnpyb",
+                        "https://formspree.io/f/xeoywjwp",
                         data={"email": contact_email, "message": contact_msg}
                     )
                     
